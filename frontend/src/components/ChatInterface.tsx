@@ -18,7 +18,7 @@ export const ChatInterface: React.FC<ChatInterfaceProps> = ({ user, onLeave }) =
   const [typingUsers, setTypingUsers] = useState<string[]>([]);
 
   useEffect(() => {
-    const newSocket = io('function-bun-production-58fd.up.railway.app');
+    const newSocket = io('https://cchat-q3ci.onrender.com');
     setSocket(newSocket);
 
     newSocket.on('connect', () => {
