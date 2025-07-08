@@ -21,15 +21,15 @@ export const MessageList: React.FC<MessageListProps> = ({ messages, currentUsern
   };
 
   return (
-    <div className="flex-1 overflow-y-auto chat-scroll p-4 space-y-4">
-      {messages.map((message) => {
+    <div className="flex-1 overflow-y-auto chat-scroll p-6 space-y-6">
+      {messages.map((message, index) => {
         const isOwnMessage = message.username === currentUsername;
         const isSystemMessage = message.type === 'system';
 
         if (isSystemMessage) {
           return (
-            <div key={message.id} className="flex justify-center">
-              <div className="bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400 px-3 py-1 rounded-full text-sm">
+            <div key={message.id} className="flex justify-center animate-fade-in">
+              <div className="bg-gray-100 dark:bg-gray-900 text-gray-600 dark:text-gray-400 px-4 py-2 rounded-full text-sm font-light">
                 {message.message}
               </div>
             </div>
@@ -39,27 +39,28 @@ export const MessageList: React.FC<MessageListProps> = ({ messages, currentUsern
         return (
           <div
             key={message.id}
-            className={`flex ${isOwnMessage ? 'justify-end' : 'justify-start'}`}
+            className={`flex ${isOwnMessage ? 'justify-end' : 'justify-start'} animate-slide-up`}
+            style={{ animationDelay: `${index * 0.1}s` }}
           >
             <div className={`max-w-xs lg:max-w-md ${isOwnMessage ? 'order-2' : 'order-1'}`}>
               <div
-                className={`px-4 py-2 rounded-2xl ${
+                className={`px-5 py-3 rounded-3xl transition-all duration-200 hover:scale-[1.02] ${
                   isOwnMessage
-                    ? 'bg-gradient-to-r from-blue-500 to-indigo-600 text-white'
-                    : 'bg-gray-100 dark:bg-gray-700 text-gray-900 dark:text-white'
+                    ? 'bg-black dark:bg-white text-white dark:text-black ml-auto'
+                    : 'bg-gray-100 dark:bg-gray-900 text-black dark:text-white'
                 }`}
               >
                 {!isOwnMessage && (
-                  <p className="text-xs font-medium mb-1 text-gray-600 dark:text-gray-400">
+                  <p className="text-xs font-medium mb-2 text-gray-600 dark:text-gray-400">
                     {message.username}
                   </p>
                 )}
-                <p className="text-sm break-words">{message.message}</p>
+                <p className="text-sm font-light break-words leading-relaxed">{message.message}</p>
                 <p
-                  className={`text-xs mt-1 ${
+                  className={`text-xs mt-2 font-light ${
                     isOwnMessage
-                      ? 'text-blue-100'
-                      : 'text-gray-500 dark:text-gray-400'
+                      ? 'text-gray-400 dark:text-gray-600'
+                      : 'text-gray-500 dark:text-gray-500'
                   }`}
                 >
                   {formatTime(message.timestamp)}

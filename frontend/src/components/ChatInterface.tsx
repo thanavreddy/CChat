@@ -79,11 +79,12 @@ export const ChatInterface: React.FC<ChatInterfaceProps> = ({ user, onLeave }) =
   };
 
   return (
-    <div className="h-screen bg-gray-50 dark:bg-gray-900 flex flex-col">
+    <div className="h-screen bg-white dark:bg-black flex flex-col animate-fade-in">
       <ChatHeader 
         isConnected={isConnected} 
         userCount={userCount}
         typingUsers={typingUsers}
+        onLeave={onLeave}
       />
       
       <MessageList 

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { MessageCircle, Users } from 'lucide-react';
+import { MessageCircle, User } from 'lucide-react';
 
 interface UserJoinProps {
   onJoin: (username: string) => void;
@@ -16,44 +16,38 @@ export const UserJoin: React.FC<UserJoinProps> = ({ onJoin }) => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-gray-800 flex items-center justify-center p-4">
-      <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl p-8 w-full max-w-md">
-        <div className="text-center mb-8">
-          <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-full mb-4">
-            <MessageCircle className="w-8 h-8 text-white" />
+    <div className="min-h-screen bg-white dark:bg-black flex items-center justify-center p-6">
+      <div className="w-full max-w-md animate-fade-in">
+        <div className="text-center mb-12">
+          <div className="inline-flex items-center justify-center w-20 h-20 bg-black dark:bg-white rounded-3xl mb-8 animate-scale-in">
+            <MessageCircle className="w-10 h-10 text-white dark:text-black" />
           </div>
-          <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">
-            Welcome to Cchat
+          <h1 className="text-4xl font-light text-black dark:text-white mb-3 tracking-tight">
+            CChat
           </h1>
-          <p className="text-gray-600 dark:text-gray-400">
-            Enter your username to join the conversation
+          <p className="text-gray-600 dark:text-gray-400 font-light">
+            Enter your username to join
           </p>
         </div>
 
-        <form onSubmit={handleSubmit} className="space-y-6">
-          <div>
-            <label htmlFor="username" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-              Username
-            </label>
-            <div className="relative">
-              <Users className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
-              <input
-                type="text"
-                id="username"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
-                className="w-full pl-12 pr-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400"
-                placeholder="Enter your username"
-                maxLength={20}
-                required
-              />
-            </div>
+        <form onSubmit={handleSubmit} className="space-y-8">
+          <div className="relative">
+            <User className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
+            <input
+              type="text"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              className="w-full pl-12 pr-4 py-4 bg-transparent border-2 border-gray-200 dark:border-gray-800 rounded-2xl focus:border-black dark:focus:border-white focus:outline-none text-black dark:text-white placeholder-gray-400 transition-all duration-300 font-light"
+              placeholder="Username"
+              maxLength={20}
+              required
+            />
           </div>
 
           <button
             type="submit"
             disabled={!username.trim()}
-            className="w-full bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 disabled:from-gray-400 disabled:to-gray-500 text-white font-medium py-3 px-4 rounded-lg transition-all duration-200 disabled:cursor-not-allowed"
+            className="w-full bg-black dark:bg-white hover:bg-gray-800 dark:hover:bg-gray-200 disabled:bg-gray-300 dark:disabled:bg-gray-700 text-white dark:text-black font-medium py-4 px-6 rounded-2xl transition-all duration-300 disabled:cursor-not-allowed transform hover:scale-[1.02] active:scale-[0.98]"
           >
             Join Chat
           </button>

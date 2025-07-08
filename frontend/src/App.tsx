@@ -17,7 +17,7 @@ function App() {
 
   return (
     <ThemeProvider>
-      <div className="min-h-screen">
+      <div className="min-h-screen bg-white dark:bg-black transition-colors duration-300">
         {currentUser ? (
           <ChatInterface user={currentUser} onLeave={handleUserLeave} />
         ) : (
